@@ -4,6 +4,17 @@ from typing import List, Optional
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+# Add this after creating the FastAPI app
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 class Todo(BaseModel):
     id: Optional[int] = None
     title: str
